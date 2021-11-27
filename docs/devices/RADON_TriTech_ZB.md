@@ -1,41 +1,47 @@
 ---
 title: "Bosch RADON TriTech ZB control via MQTT"
-description: "Integrate your Bosch RADON TriTech ZB via Zigbee2MQTT with whatever smart home
- infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Bosch RADON TriTech ZB via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+addedAt: 2019-07-22T20:08:17Z
+pageClass: device-page
 ---
 
-*To contribute to this page, edit the following
-[file](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/devices/RADON_TriTech_ZB.md)*
+<!-- !!!! -->
+<!-- ATTENTION: This file is auto-generated through docgen! -->
+<!-- You can only edit the "Notes"-Section between the two comment lines "Notes BEGIN" and "Notes END". -->
+<!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
+<!-- !!!! -->
 
 # Bosch RADON TriTech ZB
 
+|     |     |
+|-----|-----|
 | Model | RADON TriTech ZB  |
 | Vendor  | Bosch  |
 | Description | Wireless motion detector |
 | Exposes | temperature, battery, occupancy, battery_low, tamper, illuminance, illuminance_lux, linkquality |
-| Picture | ![Bosch RADON TriTech ZB](../images/devices/RADON-TriTech-ZB.jpg) |
-
-## Notes
-
-### Device type specific configuration
-*[How to use device type specific configuration](../information/configuration.md)*
-
-* `illuminance_lux_precision`: Controls the precision of `illuminance_lux` values, e.g. `0` or `1`; default `1`.
-To control the precision based on the illuminance_lux value set it to e.g. `{1000: 0, 100: 1}`,
-when illuminance_lux >= 1000 precision will be 0, when illuminance_lux >= 100 precision will be 1. Precision will take into affect with next report of device.
+| Picture | ![Bosch RADON TriTech ZB](https://www.zigbee2mqtt.io/images/devices/RADON-TriTech-ZB.jpg) |
 
 
-* `illuminance_lux_calibration`: Allows to manually calibrate illuminance values,
-e.g. `95` would take 95% to the illuminance reported by the device; default `100`. Calibration will take into affect with next report of device.
+<!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 
 
-* `temperature_precision`: Controls the precision of `temperature` values,
-e.g. `0`, `1` or `2`; default `2`.
-To control the precision based on the temperature value set it to e.g. `{30: 0, 10: 1}`,
-when temperature >= 30 precision will be 0, when temperature >= 10 precision will be 1. Precision will take into affect with next report of device.
-* `temperature_calibration`: Allows to manually calibrate temperature values,
-e.g. `1` would add 1 degree to the temperature reported by the device; default `0`. Calibration will take into affect with next report of device.
+<!-- Notes END: Do not edit below this line -->
 
+
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
+
+* `temperature_precision`: Number of digits after decimal point for temperature, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `temperature_calibration`: Calibrates the temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
+
+* `illuminance_precision`: Number of digits after decimal point for illuminance, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `illuminance_calibration`: Calibrates the illuminance value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `illuminance_lux_precision`: Number of digits after decimal point for illuminance_lux, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `illuminance_lux_calibration`: Calibrates the illuminance_lux value (percentual offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes

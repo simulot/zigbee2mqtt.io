@@ -1,27 +1,43 @@
 ---
 title: "Xiaomi WS-EUK01 control via MQTT"
-description: "Integrate your Xiaomi WS-EUK01 via Zigbee2MQTT with whatever smart home
- infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Xiaomi WS-EUK01 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+addedAt: 2021-08-01T20:41:55Z
+pageClass: device-page
 ---
 
-*To contribute to this page, edit the following
-[file](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/devices/WS-EUK01.md)*
+<!-- !!!! -->
+<!-- ATTENTION: This file is auto-generated through docgen! -->
+<!-- You can only edit the "Notes"-Section between the two comment lines "Notes BEGIN" and "Notes END". -->
+<!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
+<!-- !!!! -->
 
 # Xiaomi WS-EUK01
 
+|     |     |
+|-----|-----|
 | Model | WS-EUK01  |
 | Vendor  | Xiaomi  |
 | Description | Aqara smart wall switch H1 EU (no neutral, single rocker) |
 | Exposes | switch (state), action, power_outage_memory, operation_mode, linkquality |
-| Picture | ![Xiaomi WS-EUK01](../images/devices/WS-EUK01.jpg) |
+| Picture | ![Xiaomi WS-EUK01](https://www.zigbee2mqtt.io/images/devices/WS-EUK01.jpg) |
 
+
+<!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
 
 ### Pairing
 Press and hold the button on the device for +- 10 seconds
 (until the blue light starts blinking and stops blinking), release and wait.
+<!-- Notes END: Do not edit below this line -->
 
+
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
+
+* `temperature_precision`: Number of digits after decimal point for temperature, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+
+* `temperature_calibration`: Calibrates the temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes

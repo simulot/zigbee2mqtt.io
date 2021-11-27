@@ -1,20 +1,28 @@
 ---
 title: "iCasa ICZB-KPD14S control via MQTT"
-description: "Integrate your iCasa ICZB-KPD14S via Zigbee2MQTT with whatever smart home
- infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your iCasa ICZB-KPD14S via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+addedAt: 2020-02-26T17:45:15Z
+pageClass: device-page
 ---
 
-*To contribute to this page, edit the following
-[file](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/devices/ICZB-KPD14S.md)*
+<!-- !!!! -->
+<!-- ATTENTION: This file is auto-generated through docgen! -->
+<!-- You can only edit the "Notes"-Section between the two comment lines "Notes BEGIN" and "Notes END". -->
+<!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
+<!-- !!!! -->
 
 # iCasa ICZB-KPD14S
 
+|     |     |
+|-----|-----|
 | Model | ICZB-KPD14S  |
 | Vendor  | iCasa  |
 | Description | Zigbee 3.0 Keypad Pulse 4S |
 | Exposes | battery, action, linkquality |
-| Picture | ![iCasa ICZB-KPD14S](../images/devices/ICZB-KPD14S.jpg) |
+| Picture | ![iCasa ICZB-KPD14S](https://www.zigbee2mqtt.io/images/devices/ICZB-KPD14S.jpg) |
 
+
+<!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
 
@@ -36,19 +44,19 @@ By default (for backwards compatibility purposes) the legacy integration is enab
 For new users it is recommended to **disable** this as it has several fundamental problems.
 To disable the legacy integration add the following to your `configuration.yaml`:
 
-{% raw %}
+
 ```yaml
 '0xabc457fffe679xyz':
     friendly_name: my_remote
     legacy: false
 ```
-{% endraw %}
+<!-- Notes END: Do not edit below this line -->
 
-### Device type specific configuration
-*[How to use device type specific configuration](../information/configuration.md)*
 
-* `legacy`: Set to `false` to disable the legacy integration (highly recommended!) (default: true)
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
+* `legacy`: Set to false to disable the legacy integration (highly recommended), will change structure of the published payload (default true). The value must be `true` or `false`
 
 
 ## Exposes

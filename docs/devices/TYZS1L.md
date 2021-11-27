@@ -1,20 +1,28 @@
 ---
 title: "TuYa TYZS1L control via MQTT"
-description: "Integrate your TuYa TYZS1L via Zigbee2MQTT with whatever smart home
- infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your TuYa TYZS1L via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+addedAt: 2020-07-20T23:08:11Z
+pageClass: device-page
 ---
 
-*To contribute to this page, edit the following
-[file](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/devices/TYZS1L.md)*
+<!-- !!!! -->
+<!-- ATTENTION: This file is auto-generated through docgen! -->
+<!-- You can only edit the "Notes"-Section between the two comment lines "Notes BEGIN" and "Notes END". -->
+<!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
+<!-- !!!! -->
 
 # TuYa TYZS1L
 
+|     |     |
+|-----|-----|
 | Model | TYZS1L  |
 | Vendor  | TuYa  |
 | Description | Led strip controller HSB |
 | Exposes | light (state, color_hs), linkquality |
-| Picture | ![TuYa TYZS1L](../images/devices/TYZS1L.jpg) |
+| Picture | ![TuYa TYZS1L](https://www.zigbee2mqtt.io/images/devices/TYZS1L.jpg) |
 
+
+<!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
 
@@ -23,37 +31,13 @@ This device has various limitations:
 - Changing brightness is not supported
 - On/off and color transition is not supported
 - Color can only be set via hue/saturation, example payload `{"color":{"h": 360, "s": 100}}`.
-
-### Device type specific configuration
-*[How to use device type specific configuration](../information/configuration.md)*
-
-* `color_sync`: Synchronizes the color values in the state, e.g. if the state contains `color_temp` and `color.xy` and
-the `color_temp` is set, `color.xy` will be updated to match the `color_temp`. (default: `true`)
+<!-- Notes END: Do not edit below this line -->
 
 
-* `hue_correction`: (optional) Corrects hue values based on a correction map for matching color
-rendition to other lights. Provide a minimum of 2 data sets in the correction map. To build a map:
-    * choose one of your other lights to be the color reference
-    * send a sample color to both lights (reference and non-reference)
-    * modify hue value for non-reference light until it color matches the reference light
-    * take note of the in and out values, where
-        * `in` is the hue value you sent to your reference light
-        * `out` is the hue value you had to dial your non-reference light to
-    * repeat with a few other sample colors (4-5 should suffice)
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-    **Example correction map:**
-    ```yaml
-    hue_correction:
-        - in: 28
-          out: 45
-        - in: 89
-          out: 109
-        - in: 184
-          out: 203
-        - in: 334
-          out: 318
-    ```
-
+* `color_sync`: When enabled colors will be synced, e.g. if the light supports both color x/y and color temperature a conversion from color x/y to color temperature will be done when setting the x/y color (default true). The value must be `true` or `false`
 
 
 ## Exposes

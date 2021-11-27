@@ -1,20 +1,28 @@
 ---
 title: "HKGK BAC-002-ALZB control via MQTT"
-description: "Integrate your HKGK BAC-002-ALZB via Zigbee2MQTT with whatever smart home
- infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your HKGK BAC-002-ALZB via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+addedAt: 2021-03-28T13:25:07Z
+pageClass: device-page
 ---
 
-*To contribute to this page, edit the following
-[file](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/devices/BAC-002-ALZB.md)*
+<!-- !!!! -->
+<!-- ATTENTION: This file is auto-generated through docgen! -->
+<!-- You can only edit the "Notes"-Section between the two comment lines "Notes BEGIN" and "Notes END". -->
+<!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
+<!-- !!!! -->
 
 # HKGK BAC-002-ALZB
 
+|     |     |
+|-----|-----|
 | Model | BAC-002-ALZB  |
 | Vendor  | HKGK  |
 | Description | BAC series thermostat |
 | Exposes | lock (state), deadzone_temperature, max_temperature_limit, climate (current_heating_setpoint, local_temperature, local_temperature_calibration, system_mode, running_state, preset, sensor), linkquality |
-| Picture | ![HKGK BAC-002-ALZB](../images/devices/BAC-002-ALZB.jpg) |
+| Picture | ![HKGK BAC-002-ALZB](https://www.zigbee2mqtt.io/images/devices/BAC-002-ALZB.jpg) |
 
+
+<!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
 
@@ -24,12 +32,12 @@ Switch the thermostat off. Press and hold the temperature down button for +- 8 s
 ### Stop message flooding
 This unit has a bug that makes it send multiple messages when updating. To stop this from flooding your MQTT Queues, please add the following to your `configuration.yaml` file:
 
-{% raw %}
+
 devices:
   '0x12345678':
     friendly_name: thermostat
     debounce: 1
-{% endraw %}
+<!-- Notes END: Do not edit below this line -->
 
 
 

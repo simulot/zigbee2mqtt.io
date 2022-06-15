@@ -1,6 +1,6 @@
 ---
 title: "Danalock V3-BTZB/V3-BTZBE control via MQTT"
-description: "Integrate your Danalock V3-BTZB/V3-BTZBE via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Danalock V3-BTZB/V3-BTZBE via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-05-30T19:17:03Z
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | V3-BTZB/V3-BTZBE  |
 | Vendor  | Danalock  |
 | Description | BT/ZB smartlock |
-| Exposes | lock (state, lock_state), battery, linkquality |
+| Exposes | lock (state, lock_state), battery, action, action_source_name, action_source_user, linkquality |
 | Picture | ![Danalock V3-BTZB/V3-BTZBE](https://www.zigbee2mqtt.io/images/devices/V3-BTZB-V3-BTZBE.jpg) |
 
 
@@ -33,7 +33,14 @@ If pairing failed, try the followings:
 - Replacing the batteries of the danalock.
 
 ### App
-This device also come with an iOS app (Android as well but not tested). It is recommended to do the setups via the app for better control of the lock.
+This device also come with an iOS/Android app. It is recommended to do the setups first via the app for better control of the lock.
+
+If you have a Danapad, you can create/update/remove 20 pin code.
+To create or update code, you have to send MQTT /set request : {"pin_code":{"user":0,"pin_code":123456,"user_type":"unrestricted","user_enabled":true},"user_status":{"user":0,"status":"enabled"}}
+Apparently "user_type":"unrestricted","user_enabled":true is not used by the Danalock.
+The user value can take 0 to 19 (pin 0 to pin 19)
+For the pin code to work, you must also send user_status and set it to enabled.
+To remove a pin code, just send MQTT /set request : {"pin_code":{"user":0}} (user take value 0 to 19)
 <!-- Notes END: Do not edit below this line -->
 
 
@@ -52,6 +59,23 @@ Value can be found in the published state on the `battery` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The minimal value is `0` and the maximum value is `100`.
 The unit of this value is `%`.
+
+### Action (enum)
+Triggered action on the lock.
+Value can be found in the published state on the `action` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The possible values are: `unknown`, `lock`, `unlock`, `lock_failure_invalid_pin_or_id`, `lock_failure_invalid_schedule`, `unlock_failure_invalid_pin_or_id`, `unlock_failure_invalid_schedule`, `one_touch_lock`, `key_lock`, `key_unlock`, `auto_lock`, `schedule_lock`, `schedule_unlock`, `manual_lock`, `manual_unlock`, `non_access_user_operational_event`.
+
+### Action_source_name (enum)
+Source of the triggered action on the lock.
+Value can be found in the published state on the `action_source_name` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The possible values are: `keypad`, `rfid`, `manual`, `rf`.
+
+### Action_source_user (numeric)
+ID of user that triggered the action on the lock.
+Value can be found in the published state on the `action_source_user` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

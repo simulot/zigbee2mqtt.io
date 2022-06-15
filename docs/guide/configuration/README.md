@@ -4,18 +4,18 @@ next: adapter-settings.md
 
 # Configuration
 
-Zigbee2MQTT is configured using [YAML](https://en.wikipedia.org/wiki/YAML) based `configuration.yml` file.
-The file have to be located in the `data` directory within your installation. The `data` directory and the `configuration.yml` has to be writeable for Zigbee2MQTT process because it can get updated - e.g. if you change the settings in the frontend. It's possible specify a custom data directory by setting the `ZIGBEE2MQTT_DATA` environment variable.
+Zigbee2MQTT is configured using [YAML](https://en.wikipedia.org/wiki/YAML) based `configuration.yaml` file.
+The file have to be located in the `data` directory within your installation. The `data` directory and the `configuration.yaml` has to be writeable for Zigbee2MQTT process because it can get updated - e.g. if you change the settings in the frontend. It's possible specify a custom data directory by setting the `ZIGBEE2MQTT_DATA` environment variable.
 
 ```yaml
 # Minimal configuration.yml example
 permit_join: true
 mqtt:
-  base_topic: zigbee2mqtt
+  server: mqtt://localhost:1883
 serial:
   port: /dev/ttyUSB0
-frontend:
-  port: 8080
+# Will run frontend on port 8080
+frontend: true 
 ```
 
 ::: tip CONVENTION

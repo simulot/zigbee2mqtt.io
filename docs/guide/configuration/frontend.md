@@ -11,7 +11,13 @@ Zigbee2MQTT has a built-in webbased frontend.
 
 ![Frontend](../../images/frontend.png)
 
-To enable the frontend add the following to your `configuration.yaml`:
+To enable the frontend add the following to your `configuration.yaml`. This will start the frontend on port `8080`.
+
+```yaml
+frontend: true
+```
+
+## Advanced configuration
 
 ```yaml
 frontend:
@@ -26,6 +32,9 @@ frontend:
 ```
 
 To specify the `auth_token` in a different file set e.g. `auth_token: '!secret auth_token'`, create a file called `secret.yaml` next to `configuration.yaml` with content `auth_token: super-secret-token`.
+
+
+**NOTE:** If you are running Zigbee2MQTT via the Home Assistant addon you cannot change the port. The addon will force the frontend to run on port 8099 as Home Assistant Ingress requires this.
 
 ## Nginx proxy configuration
 In case you want to run the frontend behind a proxy you can use the following config as an example.

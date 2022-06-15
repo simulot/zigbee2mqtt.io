@@ -1,6 +1,6 @@
 ---
 title: "Xiaomi ZNCZ04LM control via MQTT"
-description: "Integrate your Xiaomi ZNCZ04LM via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Xiaomi ZNCZ04LM via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-10-30T12:58:50
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | ZNCZ04LM  |
 | Vendor  | Xiaomi  |
 | Description | Mi power plug ZigBee EU |
-| Exposes | switch (state), power, energy, temperature, voltage, current, consumer_connected, led_disabled_night, power_outage_memory, auto_off, overload_protection, linkquality |
+| Exposes | switch (state), power, energy, device_temperature, voltage, current, consumer_connected, led_disabled_night, power_outage_memory, auto_off, overload_protection, linkquality |
 | Picture | ![Xiaomi ZNCZ04LM](https://www.zigbee2mqtt.io/images/devices/ZNCZ04LM.jpg) |
 
 
@@ -42,9 +42,9 @@ This device supports OTA updates, for more information see [OTA updates](../guid
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `temperature_precision`: Number of digits after decimal point for temperature, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
+* `device_temperature_precision`: Number of digits after decimal point for device_temperature, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
 
-* `temperature_calibration`: Calibrates the temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
+* `device_temperature_calibration`: Calibrates the device_temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes
@@ -67,9 +67,9 @@ Value can be found in the published state on the `energy` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The unit of this value is `kWh`.
 
-### Temperature (numeric)
-Measured temperature value.
-Value can be found in the published state on the `temperature` property.
+### Device_temperature (numeric)
+Temperature of the device.
+Value can be found in the published state on the `device_temperature` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The unit of this value is `°C`.
 
@@ -117,7 +117,7 @@ Maximum allowed load, turns off if exceeded.
 Value can be found in the published state on the `overload_protection` property.
 To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"overload_protection": ""}`.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"overload_protection": NEW_VALUE}`.
-The minimal value is `100` and the maximum value is `2200`.
+The minimal value is `100` and the maximum value is `2300`.
 The unit of this value is `W`.
 
 ### Linkquality (numeric)

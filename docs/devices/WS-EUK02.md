@@ -1,6 +1,6 @@
 ---
 title: "Xiaomi WS-EUK02 control via MQTT"
-description: "Integrate your Xiaomi WS-EUK02 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Xiaomi WS-EUK02 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-08-01T20:41:55Z
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | WS-EUK02  |
 | Vendor  | Xiaomi  |
 | Description | Aqara smart wall switch H1 EU (no neutral, double rocker) |
-| Exposes | switch (state), power_outage_memory, operation_mode, action, linkquality |
+| Exposes | switch (state), power_outage_memory, flip_indicator_light, operation_mode, action, linkquality |
 | Picture | ![Xiaomi WS-EUK02](https://www.zigbee2mqtt.io/images/devices/WS-EUK02.jpg) |
 
 
@@ -27,13 +27,6 @@ pageClass: device-page
 
 <!-- Notes END: Do not edit below this line -->
 
-
-## Options
-*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
-
-* `temperature_precision`: Number of digits after decimal point for temperature, takes into effect on next report of device. The value must be a number with a minimum value of `0` and with a with a maximum value of `3`
-
-* `temperature_calibration`: Calibrates the temperature value (absolute offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes
@@ -54,6 +47,13 @@ Value can be found in the published state on the `power_outage_memory` property.
 To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"power_outage_memory": ""}`.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"power_outage_memory": NEW_VALUE}`.
 If value equals `true` power_outage_memory is ON, if `false` OFF.
+
+### Flip_indicator_light (binary)
+After turn on, the indicator light turns on while switch is off, and vice versa.
+Value can be found in the published state on the `flip_indicator_light` property.
+To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"flip_indicator_light": ""}`.
+To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"flip_indicator_light": NEW_VALUE}`.
+If value equals `ON` flip_indicator_light is ON, if `OFF` OFF.
 
 ### Operation_mode (enum, left endpoint)
 Decoupled mode for left button.

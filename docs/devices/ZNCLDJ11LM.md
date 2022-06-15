@@ -1,6 +1,6 @@
 ---
 title: "Xiaomi ZNCLDJ11LM control via MQTT"
-description: "Integrate your Xiaomi ZNCLDJ11LM via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Xiaomi ZNCLDJ11LM via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2019-07-22T20:08:17Z
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | ZNCLDJ11LM  |
 | Vendor  | Xiaomi  |
 | Description | Aqara curtain motor |
-| Exposes | cover (state, position), linkquality |
+| Exposes | cover (state, position), running, motor_state, linkquality |
 | Picture | ![Xiaomi ZNCLDJ11LM](https://www.zigbee2mqtt.io/images/devices/ZNCLDJ11LM.jpg) |
 
 
@@ -68,7 +68,8 @@ Home Assistant automation example:
   - service: mqtt.publish
     data:
       topic: zigbee2mqtt/<FRIENDLY_NAME>/set
-      payload: "{ 'options': { 'reset_limits': true } }"
+      payload: "{ \"options\": { \"reset_limits\": true } }"
+      # note "" are escaped with \ else will not work if you want to send payload as json
   - service: cover.close_cover
     entity_id: cover.<COVER_ID>
   - delay:
@@ -97,6 +98,18 @@ The current state of this cover is in the published state under the `state` prop
 To control this cover publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"state": "OPEN"}`, `{"state": "CLOSE"}`, `{"state": "STOP"}`.
 To read the current state of this cover publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"state": ""}`.
 To change the position publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"position": VALUE}` where `VALUE` is a number between `0` and `100`.
+
+### Running (binary)
+Whether the motor is moving or not.
+Value can be found in the published state on the `running` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+If value equals `true` running is ON, if `false` OFF.
+
+### Motor_state (enum)
+Motor state.
+Value can be found in the published state on the `motor_state` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The possible values are: `stopped`, `opening`, `closing`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

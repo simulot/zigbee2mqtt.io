@@ -1,6 +1,6 @@
 ---
 title: "UseeLink SM-SO306EZ-10 control via MQTT"
-description: "Integrate your UseeLink SM-SO306EZ-10 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your UseeLink SM-SO306EZ-10 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-12-30T11:31:00Z
 pageClass: device-page
 ---
@@ -23,12 +23,10 @@ pageClass: device-page
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
-
 ## Notes
 
 ### Pairing
 Long press the button for 6s until the LED indicator flashes in blue, which means the device has entered pairing mode.
-
 <!-- Notes END: Do not edit below this line -->
 
 

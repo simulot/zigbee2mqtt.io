@@ -1,6 +1,6 @@
 ---
 title: "TuYa TS0601_motion_sensor control via MQTT"
-description: "Integrate your TuYa TS0601_motion_sensor via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your TuYa TS0601_motion_sensor via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-10-30T12:58:50
 pageClass: device-page
 ---
@@ -63,6 +63,7 @@ Vacancy delay.
 Value can be found in the published state on the `vacancy_delay` property.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"vacancy_delay": NEW_VALUE}`.
+The minimal value is `0` and the maximum value is `1000`.
 The unit of this value is `sec`.
 
 ### Light_on_luminance_prefer (numeric)
@@ -70,12 +71,14 @@ Light-On luminance prefer.
 Value can be found in the published state on the `light_on_luminance_prefer` property.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"light_on_luminance_prefer": NEW_VALUE}`.
+The minimal value is `0` and the maximum value is `10000`.
 
 ### Light_off_luminance_prefer (numeric)
 Light-Off luminance prefer.
 Value can be found in the published state on the `light_off_luminance_prefer` property.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"light_off_luminance_prefer": NEW_VALUE}`.
+The minimal value is `0` and the maximum value is `10000`.
 
 ### Mode (enum)
 Working mode.

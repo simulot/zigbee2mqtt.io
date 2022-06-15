@@ -1,6 +1,6 @@
 ---
 title: "SONOFF SNZB-02 control via MQTT"
-description: "Integrate your SONOFF SNZB-02 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your SONOFF SNZB-02 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-07-10T21:03:07Z
 pageClass: device-page
 ---
@@ -29,10 +29,6 @@ pageClass: device-page
 
 ### Pairing
 Long press reset button for 5s until the LED indicator flashes three times, which means the device has entered pairing mode
-
-### Reporting intervals
-It has been reported, that the sensor reports humidity changes quite frequently (changes on 2nd digit level), but temperature changes are reported only once per hour or when temperature has changed > ~0.6°C. This results in a *staircase* development in recorded temperatures and inhibits fine-granular climate control. No resolution is known so far. See also [Homeassistant Community Forums](https://community.home-assistant.io/t/sonoff-snzb-02-temp-sensor-reporting-interval/216315/7)
-
 
 ### Battery
 Uses a CR2450 battery

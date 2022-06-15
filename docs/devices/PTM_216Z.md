@@ -1,6 +1,6 @@
 ---
 title: "EnOcean PTM 216Z control via MQTT"
-description: "Integrate your EnOcean PTM 216Z via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your EnOcean PTM 216Z via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-09-02T18:14:38Z
 pageClass: device-page
 ---
@@ -32,6 +32,9 @@ Messages from Green Power devices cannot be "understood" by normal Zigbee device
 Not all Zigbee devices can do this translation, currently the only devices known to do this are Philips Hue devices. This means that the Green Power device has to be in range of a Philips Hue device in order to use it.
 
 Green Power devices don't support binding and are not included in network scans.
+
+Binding may work between this module and the actuator, depending if the actuator supports the Zigbee Green Power standard & if the actuators user interface supports "Finding & binding" or "EZ-mode". For more information, contact the supplier of the actuator.
+
 
 ### Pairing
 This device has 4 buttons:

@@ -11,7 +11,7 @@ export function generateExpose(definition) {
   return `
 ## Exposes
 
-${definition.exposes.map((e) => getExposeDocs(e)).join('\n\n')}
+${(typeof definition.exposes === 'function' ? definition.exposes() : definition.exposes).map((e) => getExposeDocs(e)).join('\n\n')}
 `;
 }
 
@@ -62,7 +62,7 @@ function getExposeDocs(expose) {
       }
 
       if (expose.presets) {
-        throw new Error('Not supported');
+        lines.push(`Besides the numeric values the following values are accepected: ${expose.presets.map((p) => `\`${p.name}\``).join(', ')}.`)
       }
     }
 
@@ -212,6 +212,16 @@ function getExposeDocs(expose) {
     const runningState = expose.features.find((e) => e.name === 'running_state');
     if (runningState) {
       lines.push(`- \`${runningState.name}\`: ${runningState.description}. Possible values are: ${runningState.values.map((v) => `\`${v}\``).join(', ')}. To read send a message to \`zigbee2mqtt/FRIENDLY_NAME/get\` with payload \`{"${runningState.property}": ""}\`.`);
+    }
+
+    const localTemperatureCalibration = expose.features.find((e) => e.name === 'local_temperature_calibration');
+    if (localTemperatureCalibration) {
+      let line = `- \`${localTemperatureCalibration.name}\`: ${localTemperatureCalibration.description}. To control publish a message to topic \`zigbee2mqtt/FRIENDLY_NAME/set\` with payload \`{"${localTemperatureCalibration.property}": VALUE}.\``
+      if (localTemperature.access & access.GET) {
+        line += `To read send a message to \`zigbee2mqtt/FRIENDLY_NAME/get\` with payload \`{"${localTemperature.property}": ""}\`.`
+      }
+      
+      lines.push(line);
     }
 
     const awayMode = expose.features.find((e) => e.name === 'away_mode');

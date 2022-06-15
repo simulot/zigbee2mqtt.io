@@ -1,6 +1,6 @@
 ---
 title: "PLAID SYSTEMS PS-SPRZMS-SLP3 control via MQTT"
-description: "Integrate your PLAID SYSTEMS PS-SPRZMS-SLP3 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your PLAID SYSTEMS PS-SPRZMS-SLP3 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-10-01T17:18:02Z
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | PS-SPRZMS-SLP3  |
 | Vendor  | PLAID SYSTEMS  |
 | Description | Spruce temperature and moisture sensor |
-| Exposes | humidity, temperature, linkquality |
+| Exposes | humidity, temperature, battery, voltage, linkquality |
 | Picture | ![PLAID SYSTEMS PS-SPRZMS-SLP3](https://www.zigbee2mqtt.io/images/devices/PS-SPRZMS-SLP3.jpg) |
 
 
@@ -53,6 +53,19 @@ Measured temperature value.
 Value can be found in the published state on the `temperature` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The unit of this value is `°C`.
+
+### Battery (numeric)
+Remaining battery in %.
+Value can be found in the published state on the `battery` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The minimal value is `0` and the maximum value is `100`.
+The unit of this value is `%`.
+
+### Voltage (numeric)
+Voltage of the battery in millivolts.
+Value can be found in the published state on the `voltage` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The unit of this value is `mV`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

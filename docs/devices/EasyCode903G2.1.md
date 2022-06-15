@@ -1,6 +1,6 @@
 ---
 title: "EasyAccess EasyCode903G2.1 control via MQTT"
-description: "Integrate your EasyAccess EasyCode903G2.1 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your EasyAccess EasyCode903G2.1 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-05-01T14:47:09Z
 pageClass: device-page
 ---
@@ -20,6 +20,7 @@ pageClass: device-page
 | Description | EasyFinger V2 |
 | Exposes | lock (state, lock_state), battery, sound_volume, action, auto_relock, linkquality |
 | Picture | ![EasyAccess EasyCode903G2.1](https://www.zigbee2mqtt.io/images/devices/EasyCode903G2.1.jpg) |
+| White-label | Datek Wireless EasyCode903G2.1 |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->

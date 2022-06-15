@@ -1,6 +1,6 @@
 ---
 title: "TuYa TS0601_smoke control via MQTT"
-description: "Integrate your TuYa TS0601_smoke via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your TuYa TS0601_smoke via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-07-01T18:17:29Z
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | TS0601_smoke  |
 | Vendor  | TuYa  |
 | Description | Smoke sensor |
-| Exposes | smoke, battery_low, linkquality |
+| Exposes | smoke, battery, linkquality |
 | Picture | ![TuYa TS0601_smoke](https://www.zigbee2mqtt.io/images/devices/TS0601_smoke.jpg) |
 
 
@@ -37,11 +37,12 @@ Value can be found in the published state on the `smoke` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 If value equals `true` smoke is ON, if `false` OFF.
 
-### Battery_low (binary)
-Indicates if the battery of this device is almost empty.
-Value can be found in the published state on the `battery_low` property.
+### Battery (numeric)
+Remaining battery in %.
+Value can be found in the published state on the `battery` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
-If value equals `true` battery_low is ON, if `false` OFF.
+The minimal value is `0` and the maximum value is `100`.
+The unit of this value is `%`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

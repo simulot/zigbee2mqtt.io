@@ -1,6 +1,6 @@
 ---
 title: "iCasa ICZB-KPD18S control via MQTT"
-description: "Integrate your iCasa ICZB-KPD18S via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your iCasa ICZB-KPD18S via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2019-11-09T18:37:38Z
 pageClass: device-page
 ---
@@ -25,6 +25,18 @@ pageClass: device-page
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
+
+### Pairing
+
+To Reset the iCasa ICZB-KPD18S do the following:
+1) Press and hold down both OFF button and the ON button until the LED indicator on the remote turns on.
+2) Than immediately click OFF button 5 times. 3) The LED status indicator flashes 3 times to indicate successful reset.
+
+Pairing mode:
+1) Press and hold down OFF and ON button simultaneously until the status LED indicator on the remote turns on,
+then immediately click ON button.
+2) The status LED indicator on the remote will blink fast.
+3) When the pairing is successful the status LED indicator on the remote will blink 6 times.
 
 ### Deprecated click event
 By default this device exposes a deprecated `click` event. It's recommended to use the `action` event instead.
@@ -57,6 +69,13 @@ To disable the legacy integration add the following to your `configuration.yaml`
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
 * `legacy`: Set to false to disable the legacy integration (highly recommended), will change structure of the published payload (default true). The value must be `true` or `false`
+
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. Note: will only work when legacy: false is set. Example:
+```yaml
+simulated_brightness:
+  delta: 20 # delta per interval, default = 20
+  interval: 200 # interval in milliseconds, default = 200
+```
 
 
 ## Exposes

@@ -1,6 +1,6 @@
 ---
 title: "Lonsonho ZB-RGBCW control via MQTT"
-description: "Integrate your Lonsonho ZB-RGBCW via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Lonsonho ZB-RGBCW via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-12-30T11:31:00Z
 pageClass: device-page
 ---
@@ -23,8 +23,13 @@ pageClass: device-page
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
+## Notes
 
-
+### Pairing
+1. Switch on your device.
+2. Now switch off and back on within 2 seconds.
+3. Repeat off/on four more times.
+4. Reset is done when the device is switched on the fifth time and the light starts pulsing.
 <!-- Notes END: Do not edit below this line -->
 
 

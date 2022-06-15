@@ -1,6 +1,6 @@
 ---
 title: "Sengled E1C-NB7 control via MQTT"
-description: "Integrate your Sengled E1C-NB7 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Sengled E1C-NB7 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-07-01T18:17:29Z
 pageClass: device-page
 ---
@@ -26,6 +26,9 @@ pageClass: device-page
 
 
 <!-- Notes END: Do not edit below this line -->
+
+## OTA updates
+This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
 
 
 

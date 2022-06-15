@@ -52,7 +52,7 @@ automation:
       service: light.toggle
 ```
 
-If you only plan to use this and want to disable the *Via Home Assistant entity* integration below, set `homeassistant_legacy_triggers: false` (see [Configuration](../../configuration/) for more info).
+If you only plan to use this and want to disable the *Via Home Assistant entity* integration below, set `homeassistant: {legacy_triggers: false}` (see [Configuration](../../configuration/homeassistant.md) for more info).
 
 ### Via Home Assistant entity
 This method work by responding to the state change event of a sensor.
@@ -122,6 +122,17 @@ devices:
 ```
 
 If you are also using device specific overrides, make sure that they are configured under the new device type rather than the original device type.
+
+## Using a custom name for the device and entities
+In order to get a more readable name for the device and entities in Home Assistant, a specific name for Home Assistant can be set in the device configuration. If set, this name will be used instead of `friendly_name`.
+
+```yaml
+devices:
+  "0x12345678":
+    friendly_name: living_room/temperature_sensor
+    homeassistant:
+      name: Living Room Temperature Sensor
+```
 
 ## Controlling Zigbee2MQTT via Home Assistant
 The following Home Assistant configuration allows you to control Zigbee2MQTT from Home Assistant.
@@ -195,40 +206,44 @@ script:
             "force": {% if states.input_boolean.zigbee2mqtt_force_remove.state == "off" %}false{% else %}true{% endif %}
           }
 
-# Timer for joining time remaining (120 sec = 2 min)
+# Timer for joining time remaining (254 sec)
 timer:
   zigbee_permit_join:
     name: Time remaining
-    duration: 120
+    duration: 254
 
-sensor:
-  # Sensor for monitoring the bridge state
-  - platform: mqtt
-    name: Zigbee2MQTT Bridge state
-    state_topic: "zigbee2mqtt/bridge/state"
-    icon: mdi:router-wireless
-  # Sensor for Showing the Zigbee2MQTT Version
-  - platform: mqtt
-    name: Zigbee2MQTT Version
-    state_topic: "zigbee2mqtt/bridge/info"
-    value_template: "{{ value_json.version }}"
-    icon: mdi:zigbee
-  # Sensor for Showing the Coordinator Version
-  - platform: mqtt
-    name: Coordinator Version
-    state_topic: "zigbee2mqtt/bridge/info"
-    value_template: "{{ value_json.coordinator }}"
-    icon: mdi:chip
-
-# Switch for enabling joining
-switch:
-  - platform: mqtt
-    name: "Zigbee2MQTT Main join"
-    state_topic: "zigbee2mqtt/bridge/info"
-    value_template: '{{ value_json.permit_join | lower }}'
-    command_topic: "zigbee2mqtt/bridge/request/permit_join"
-    payload_on: "true"
-    payload_off: "false"
+mqtt:
+  sensor:
+    # Sensor for monitoring the bridge state
+    - name: Zigbee2MQTT Bridge state
+      state_topic: "zigbee2mqtt/bridge/state"
+      icon: mdi:router-wireless
+    # Sensor for Showing the Zigbee2MQTT Version
+    - name: Zigbee2MQTT Version
+      state_topic: "zigbee2mqtt/bridge/config"
+      value_template: "{{ value_json.version }}"
+      icon: mdi:zigbee
+    # Sensor for Showing the Coordinator Version
+    - name: Coordinator Version
+      state_topic: "zigbee2mqtt/bridge/config"
+      value_template: "{{ value_json.coordinator }}"
+      icon: mdi:chip
+    - name: Zigbee2mqtt Networkmap
+      # if you change base_topic of Zigbee2mqtt, change state_topic accordingly
+      state_topic: zigbee2mqtt/bridge/networkmap/raw
+      value_template: >-
+        {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+      # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
+      json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+    
+  # Switch for enabling joining
+  switch:
+    - name: "Zigbee2MQTT Main join"
+      state_topic: "zigbee2mqtt/bridge/info"
+      value_template: '{{ value_json.permit_join | lower }}'
+      command_topic: "zigbee2mqtt/bridge/request/permit_join"
+      payload_on: "true"
+      payload_off: "false"
 
 automation:
   # Automation for sending MQTT message on input select change
@@ -319,8 +334,3 @@ entities:
 
 ## Zigbee Network Map (Custom Card)
 [Zigbee Network Map Home Assistant Custom Card](https://github.com/azuwis/zigbee2mqtt-networkmap/).
-
-## Zigbee Network Map (Custom Component)
-[Zigbee Network Map Home Assistant addon](https://github.com/rgruebel/ha_zigbee2mqtt_networkmap).
-
-**NOTE:** This addon is not password protected (if you have provided external access to your Home Assistant instance **EVERYONE** can access your Network Map).

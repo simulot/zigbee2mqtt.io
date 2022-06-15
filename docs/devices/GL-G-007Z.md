@@ -1,6 +1,6 @@
 ---
 title: "Gledopto GL-G-007Z control via MQTT"
-description: "Integrate your Gledopto GL-G-007Z via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Gledopto GL-G-007Z via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2019-12-15T17:27:48Z
 pageClass: device-page
 ---
@@ -17,7 +17,7 @@ pageClass: device-page
 |-----|-----|
 | Model | GL-G-007Z  |
 | Vendor  | Gledopto  |
-| Description | Zigbee 9W Garden Lamp RGB+CCT |
+| Description | Zigbee 9W garden lamp RGB+CCT |
 | Exposes | light (state, brightness, color_temp, color_temp_startup, color_xy, color_hs), effect, linkquality |
 | Picture | ![Gledopto GL-G-007Z](https://www.zigbee2mqtt.io/images/devices/GL-G-007Z.jpg) |
 

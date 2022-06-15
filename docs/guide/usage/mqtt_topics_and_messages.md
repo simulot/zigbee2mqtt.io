@@ -48,6 +48,9 @@ Published messages are **always** in a JSON format. Each device produces a diffe
 }
 ```
 
+## zigbee2mqtt/FRIENDLY_NAME/availability
+If ["Device-Availability"](../configuration/device-availability.md) is configured the online/offline status will be published when it changes.
+
 ## zigbee2mqtt/FRIENDLY_NAME/set
 Publishing messages to this topic allows you to control your Zigbee devices via MQTT. Only accepts JSON messages. An example to control a Philips Hue Go (7146060PH). How to control a specific device can be found in the *Exposes* section on the device page which can be accessed via ["Supported devices"](../../supported-devices/).
 
@@ -62,6 +65,14 @@ Publishing messages to this topic allows you to control your Zigbee devices via 
 ### Without JSON
 In case you don't want to use JSON, publishing to `zigbee2mqtt/[FRIENDLY_NAME]/set/state` with payload `ON` is the same as publishing to `zigbee2mqtt/[FRIENDLY_NAME]/set` payload `{"state": "ON"}`.
 
+### Publishing messages
+
+Publishing messages depends on the MQTT client you use. For example to publish a message using the command line with mosquitto you can use the command
+
+```bash
+ mosquitto_pub -t 'zigbee2mqtt/0x0fffffffffffffff/set' -m '{ "state": "ON" }'
+```
+
 ## zigbee2mqtt/FRIENDLY_NAME/get
 This is the counterpart of the `set` command. It allows you to read a value from a device. To read e.g. the state of a device send the payload `{"state": ""}`. What you can `/get` is specified on the device page under the *Exposes* section.
 
@@ -75,6 +86,7 @@ Example payload:
     "version":"1.13.0-dev",
     "commit":"772f6c0",
     "coordinator":{
+        "ieee_address": "0x12345678",
         "type":"zStack30x",
         "meta":{"revision":20190425, "transportrev":2, "product":2, "majorrel":2, "minorrel":7, "maintrel":2}
     },
@@ -89,15 +101,17 @@ Example payload:
 ```
 
 ## zigbee2mqtt/bridge/state
-Contains the state of the bridge, payloads are:
+Contains the state of the bridge, this message is published as retained. Payloads are:
 * `online`: published when the bridge is running (on startup)
 * `offline`: published right before the bridge stops
+
+If `advanced.legacy_availability_payload` is set to `false` the payload will be a JSON object (`{"state":"online"}`/`{"state":"offline"}`).
 
 ## zigbee2mqtt/bridge/logging
 All Zigbee2MQTT logging is published to this topic in the form of `{"level": LEVEL, "message": MESSAGE}`, example: `{"level": "info", "message": "Zigbee: allowing new devices to join."}`.
 
 ## zigbee2mqtt/bridge/devices
-Contains the devices connected to the bridge.
+Contains the devices connected to the bridge, this message is published as retained.
 Whenever a devices joins or leaves this is republished.
 In case `supported` is `false`, `definition` will be `null`.
 Example payload:
@@ -110,6 +124,7 @@ Example payload:
         "network_address":29159,
         "supported":true,
         "friendly_name":"my_plug",
+        "description":"this plug is in the kitchen",
         "endpoints":{"1":{"bindings":[],"configured_reportings":[],"clusters":{"input":["genOnOff","genBasic"],"output":[]}}},
         "definition":{
             "model":"ZNCZ02LM",
@@ -198,7 +213,7 @@ A device definition will always have an `exposes` and `options` property which a
 
 
 ## zigbee2mqtt/bridge/groups
-Contains the groups.
+Contains the groups, this message is published as retained.
 Whenever a group is added/removed or when devices are added/removed from a group this is republished.
 Example payload:
 
@@ -342,7 +357,7 @@ See [Binding](./binding.md).
 
 #### zigbee2mqtt/bridge/request/device/configure_reporting
 
-Allows to send a Zigbee configure reporting command to a device. Refer to the Configure Reporting Command in the [ZigBee Cluster Library](https://github.com/Koenkk/zigbee-herdsman/blob/master/docs/Zigbee%20Cluster%20Library%20Specification%20v7.pdf) for more information. Example payload is `{"id":"my_bulb","cluster":"genLevelCtrl","attribute":"currentLevel","minimum_report_interval":5,"maximum_report_interval":10,"reportable_change":10}`. In this case the response would be `{"data":{"id":"my_bulb","cluster":"genLevelCtrl","attribute":"currentLevel","minimum_report_interval":5,"maximum_report_interval":"10","reportable_change":10},"status":"ok"}`.
+Allows to send a Zigbee configure reporting command to a device. Refer to the Configure Reporting Command in the [ZigBee Cluster Library](https://github.com/Koenkk/zigbee-herdsman/blob/master/docs/07-5123-08-Zigbee-Cluster-Library.pdf) for more information. Example payload is `{"id":"my_bulb","cluster":"genLevelCtrl","attribute":"currentLevel","minimum_report_interval":5,"maximum_report_interval":10,"reportable_change":10}`. In this case the response would be `{"data":{"id":"my_bulb","cluster":"genLevelCtrl","attribute":"currentLevel","minimum_report_interval":5,"maximum_report_interval":"10","reportable_change":10},"status":"ok"}`.
 
 To disable reporting set the `maximum_report_interval` to `65535`.
 
@@ -350,7 +365,7 @@ Notes:
 - Not all devices support the Zigbee configure reporting command (e.g. Xiaomi WSDCGQ11LM temperature/humidity sensors don't support it)
 - If configure reporting fails for a battery powered device make sure to wake it up right before sending the command.
 - The `reportable_change` value depends on the unit of the attribute, e.g. for temperature 100 means in general 1°C of change.
-
+- To specify options, e.g. the manufactuerCode use e.g. `{"id":"my_bulb","cluster":"genLevelCtrl","attribute":"currentLevel","minimum_report_interval":5,"maximum_report_interval":10,"reportable_change":10,"options":{"manufacturerCode":1234}}`
 
 ### Group
 
@@ -370,6 +385,7 @@ Adds a group. Allowed payloads are `{"friendly_name": NAME, "id": NUMBER}` or `N
 
 Allows you to change the `friendly_name` of a group on the fly. Payload format is `{"from": groupID, "to": groupID}` where groupID can be the `groupID` or `friendly_name` of the group, example: `{"from": "my_group", "to": "my_group_new_name"}`. Response will be `{"data":{"from":"my_group","to":"my_group_new_name"},"status":"ok"}`.
 
+In case you are using Home Assistant discovery and also want to update the entity ID according to this new name, send e.g. `{"from": "my_group", "to": "my_group_new_name","homeassistant_rename":true}`.
 
 #### zigbee2mqtt/bridge/request/group/options
 

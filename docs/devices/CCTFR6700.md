@@ -1,6 +1,6 @@
 ---
 title: "Schneider Electric CCTFR6700 control via MQTT"
-description: "Integrate your Schneider Electric CCTFR6700 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Schneider Electric CCTFR6700 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-05-25T17:59:46Z
 pageClass: device-page
 ---
@@ -35,15 +35,18 @@ It supports two modes:
 ### Pairing and configuring
 After pairing the device requires:
 - the pilot mode to be configured (Contactor/Pilot)
-- an external temperature measurment, either through a bind from a sensor, or report from the coordinator trhough automation. The temperature must be refreshed at least every 10mn
+- an external temperature measurement, either through a bind from a sensor, or report from the coordinator trhough automation. The temperature must be refreshed at least every 10mn
 - the target thermostat set point
+
+### Local temperature
+In order to provide external temperature measurement from the coordinator through automation, can be set by publishing a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"temperature_measured_value": VALUE}` where `VALUE` is the temperature eg: `18`.
 <!-- Notes END: Do not edit below this line -->
 
 
 ## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `thermostat_unit`: Controls the temperature unit of the themrostat (default celsius). The value must be one of `celsius`, `fahrenheit`
+* `thermostat_unit`: Controls the temperature unit of the thermostat (default celsius). The value must be one of `celsius`, `fahrenheit`
 
 
 ## Exposes

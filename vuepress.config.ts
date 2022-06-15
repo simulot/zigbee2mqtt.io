@@ -103,6 +103,12 @@ const conf = {
 
   plugins: [
     [
+      '@vuepress/plugin-google-analytics',
+      {
+        id: 'G-H74W4PSJDZ',
+      },
+    ],
+    [
       'vuepress-plugin-sitemap2',
       { hostname: domain }
     ],
@@ -127,6 +133,9 @@ const conf = {
           SupportedDevices: path.resolve(__dirname, 'supported-devices-component/SupportedDevices.vue'),
         },
       },
+    ],
+    [
+      path.resolve(__dirname, './docs/.vuepress/defaultPageClassPlugin.ts'),
     ],
   ],
 }

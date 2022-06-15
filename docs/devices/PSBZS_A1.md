@@ -1,6 +1,6 @@
 ---
 title: "Lidl PSBZS A1 control via MQTT"
-description: "Integrate your Lidl PSBZS A1 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Lidl PSBZS A1 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-07-01T18:17:29Z
 pageClass: device-page
 ---
@@ -41,6 +41,7 @@ Auto off after specific time..
 Value will **not** be published in the state.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"timer": NEW_VALUE}`.
+The minimal value is `1` and the maximum value is `10000`.
 The unit of this value is `min`.
 
 ### Linkquality (numeric)

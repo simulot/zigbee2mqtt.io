@@ -1,6 +1,6 @@
 ---
 title: "HKGK BAC-002-ALZB control via MQTT"
-description: "Integrate your HKGK BAC-002-ALZB via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your HKGK BAC-002-ALZB via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-03-28T13:25:07Z
 pageClass: device-page
 ---
@@ -49,10 +49,11 @@ To control this lock publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` 
 It's not possible to read (`/get`) this value.
 
 ### Deadzone_temperature (numeric)
-The delta between local_temperature and current_heating_setpoint to trigger Heat. 1-5.
+The delta between local_temperature and current_heating_setpoint to trigger Heat.
 Value can be found in the published state on the `deadzone_temperature` property.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"deadzone_temperature": NEW_VALUE}`.
+The minimal value is `0` and the maximum value is `5`.
 The unit of this value is `°C`.
 
 ### Max_temperature_limit (numeric)
@@ -60,6 +61,7 @@ Maximum temperature limit.
 Value can be found in the published state on the `max_temperature_limit` property.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"max_temperature_limit": NEW_VALUE}`.
+The minimal value is `0` and the maximum value is `35`.
 The unit of this value is `°C`.
 
 ### Climate 
@@ -69,6 +71,7 @@ This climate device supports the following features: `current_heating_setpoint`,
 - `system_mode`: Mode of this device. To control publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"system_mode": VALUE}` where `VALUE` is one of: `off`, `cool`. To read send a message to `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"system_mode": ""}`.
 - `preset`: Mode of this device (similar to system_mode). To control publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"preset": VALUE}` where `VALUE` is one of: `hold`, `program`. To read send a message to `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"preset": ""}`.
 - `running_state`: The current running state. Possible values are: `idle`, `heat`, `cool`. To read send a message to `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"running_state": ""}`.
+- `local_temperature_calibration`: Offset to be used in the local_temperature. To control publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"local_temperature_calibration": VALUE}.`
 
 ### Linkquality (numeric)
 Link quality (signal strength).

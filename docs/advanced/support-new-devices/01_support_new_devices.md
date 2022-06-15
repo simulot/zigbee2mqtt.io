@@ -66,6 +66,7 @@ In case your device is not reporting anything, it could be that this device requ
 If your device is advertised as TuYa compatible or reports anything with `manuSpecificTuya` additional instructions for adding your device can be found [here](./02_support_new_tuya_devices.md).
 :::
 
+In case your device does not report anything out of the blue, the Clusters page at Zigbee2MQTT's frontend (found under the device in the dashboard) also exposes the clusters.
 
 Some basic external converter examples:
 - [Bulb (light)](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/externalConvertersExample/light.js)
@@ -96,9 +97,9 @@ const definition = {
     model: 'WSDCGQ01LM',
     vendor: 'Xiaomi',
     description: 'MiJia temperature & humidity sensor',
-    fromZigbee: [fz.temperature], // <-- added here
-    toZigbee: [],
-    exposes: [e.battery(), e.temperature(), e.humidity()],
+    fromZigbee: [fz.temperature], // <-- added here all clusters reported from zigbee
+    toZigbee: [], // <-- add here all clusters to send commands to zigbee
+    exposes: [e.battery(), e.temperature(), e.humidity()], // <-- this will define which fields will be exposed in the definition message to configure a front end (e.g. the z2m frontend, Home Assistant, Domoticz)
 };
 
 module.exports = definition;
@@ -106,18 +107,22 @@ module.exports = definition;
 
 Repeat until your device does not produce any more log messages like: `2018-5-1 18:19:41 WARN No converter available for 'WSDCGQ01LM' with....`
 
-In case you need to add custom converters you can find an external converter example [here](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/externalConvertersExample/freepad_ext.js).
+In case you need to add custom converters you can find an external converter example [here](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/externalConvertersExample/freepad_ext.js). In case none of the existing converters fit you can add custom ones, external converter example for this can be found [here](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/externalConvertersExample/freepad_ext.js).
 
 #### 3.1 Retrieving color temperature range (only required for lights which support color temperature)
-If your device is a light and supports color temperature you need to define the color temperature range. This range indicates the minimum and maximum color temperature value the light supports. This can be retrieved from the light by sending to `zigbee2mqtt/DEVICE_FRIENDLY_NAME/set` with payload `{"read": {"cluster": "lightingColorCtrl", "attributes": ["colorTempPhysicalMin", "colorTempPhysicalMax"]}}`
+If your device is a light and supports color temperature you need to define the color temperature range. This range indicates the minimum and maximum color temperature value the light supports. This can be retrieved by clicking on your device in the frontend, go to "Dev console". For cluster select `LColorCtrl`, for attribute `colorTempPhysicalMin` and `colorTempPhysicalMax`, after that click on "Read". Now the min/max color temperature will be read as marked below
+
+![colortemp_min_max](../../images/colortemp_min_max.png)
+
+Alternatively this can be retrieved from the light by sending to `zigbee2mqtt/DEVICE_FRIENDLY_NAME/set` with payload `{"read": {"cluster": "lightingColorCtrl", "attributes": ["colorTempPhysicalMin", "colorTempPhysicalMax"]}}`
 
 The result will be logged to the Zigbee2MQTT log, e.g.
 
 ```
-Zigbee2MQTT:info  2021-03-21 21:10:40: Read result of 'lightingColorCtrl': {"colorTempPhysicalMin":153,"colorTempPhysicalMax":500}
+Zigbee2MQTT:info  2021-03-21 21:10:40: Read result of 'lightingColorCtrl': {"colorTempPhysicalMin":153,"colorTempPhysicalMax":454}
 ```
 
-In the above example set `colorTempRange` to `{colorTempRange: [153, 500]}`, e.g.:
+In the above example set `colorTempRange` to `{colorTempRange: [153, 454]}`, e.g.:
 
 ```js
 const definition = {
@@ -125,11 +130,9 @@ const definition = {
     model: 'myModel',
     vendor: 'myVendor',
     description: 'Super bulb',
-    extend: extend.light_onoff_brightness_colortemp({colorTempRange: [153, 500]}), // <---
+    extend: extend.light_onoff_brightness_colortemp({colorTempRange: [153, 454]}), // <---
 },
 ```
-
-In case none of the existing converters fit you can add custom ones, external converter example for this can be found [here](https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/externalConvertersExample/freepad_ext.js).
 
 ### 4. Add device picture to zigbee2mqtt.io documentation
 To make sure a picture is available for this device on the supported devices page and in the frontend:

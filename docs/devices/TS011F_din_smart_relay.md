@@ -1,6 +1,6 @@
 ---
 title: "TuYa TS011F_din_smart_relay control via MQTT"
-description: "Integrate your TuYa TS011F_din_smart_relay via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your TuYa TS011F_din_smart_relay via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-09-01T18:11:17Z
 pageClass: device-page
 ---
@@ -18,7 +18,7 @@ pageClass: device-page
 | Model | TS011F_din_smart_relay  |
 | Vendor  | TuYa  |
 | Description | Din smart relay (with power monitoring) |
-| Exposes | switch (state), power, current, voltage, energy, power_outage_memory, linkquality |
+| Exposes | switch (state), power, current, voltage, energy, power_outage_memory, indicator_mode, linkquality |
 | Picture | ![TuYa TS011F_din_smart_relay](https://www.zigbee2mqtt.io/images/devices/TS011F_din_smart_relay.jpg) |
 | White-label | MatSee Plus ATMS1602Z |
 
@@ -28,6 +28,15 @@ pageClass: device-page
 
 <!-- Notes END: Do not edit below this line -->
 
+
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
+
+* `power_calibration`: Calibrates the power value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `current_calibration`: Calibrates the current value (percentual offset), takes into effect on next report of device. The value must be a number.
+
+* `voltage_calibration`: Calibrates the voltage value (percentual offset), takes into effect on next report of device. The value must be a number.
 
 
 ## Exposes
@@ -67,6 +76,13 @@ Value can be found in the published state on the `power_outage_memory` property.
 It's not possible to read (`/get`) this value.
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"power_outage_memory": NEW_VALUE}`.
 The possible values are: `on`, `off`, `restore`.
+
+### Indicator_mode (enum)
+Relay LED indicator mode.
+Value can be found in the published state on the `indicator_mode` property.
+It's not possible to read (`/get`) this value.
+To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"indicator_mode": NEW_VALUE}`.
+The possible values are: `off`, `on_off`, `off_on`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).
